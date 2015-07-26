@@ -85,8 +85,65 @@ if (Meteor.isClient) {
             }
         }
     });
+
+
 }
 
 
+if (Meteor.isClient) {
 
 
+    var now = new Date();
+    var future = new Date("July 26, 2015, 11:00:00");
+    var remaining = future - now;
+    var timer;
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+
+    var days = Math.floor(remaining / _day);
+    var hours = Math.floor((remaining % _day) / _hour);
+    var minutes = Math.floor((remaining % _hour) / _minute);
+    var seconds = Math.floor((remaining % _minute) / _second);
+    var inc = 0
+
+    Template.countDown.helpers({
+        countdown: function () {
+            Chronos.liveUpdate();
+
+            document.getElementById('Countdown').innerHTML = 'Time Remaining: ' + days + 'days ';
+            document.getElementById('Countdown').innerHTML += hours + 'hrs ';
+            document.getElementById('Countdown').innerHTML += minutes + 'mins ';
+            document.getElementById('Countdown').innerHTML += seconds + 'secs';
+
+            seconds -= inc;
+
+            if (seconds < 0) {
+                seconds = 59;
+                minutes -= 1;
+            } if (minutes < 0) {
+                minutes = 59;
+                hours -= 1;
+            } if (hours < 0) {
+                hours = 23;
+                days -= 1;
+            } if (days == -1 && hours == 23 && minutes == 59 && seconds == 59){
+                days= 0;
+                hours = 0;
+                minutes =0;
+                seconds =0;
+                document.getElementById('Countdown').innerHTML = "Get on Bike";
+            }
+
+    }
+})
+
+    Template.countDown.events({
+        countdown : onload = function() {
+            inc = 1;
+            return days + ' days '+ hours + ' hrs '+ minutes + ' mins ' +seconds + ' secs';
+        }
+    })
+}

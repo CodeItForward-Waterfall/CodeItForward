@@ -1,3 +1,5 @@
+<head>
+</head>
 <template name="timer">
     <div class="timer">
         {{> clock}}
@@ -6,6 +8,7 @@
         <input class="btn btn-default" type="button" id="stop" value="Stop">
         <input class="btn btn-default" type="button" id="reset" value="Reset">
         {{>shareit}}
+        {{>countDown}}
     </div>
 </template>
 
@@ -23,3 +26,16 @@
         <!--totalSec-->
     <!--</script>-->
 </template>
+
+
+
+
+<template name="countDown">
+
+    {{countdown}}
+    <span id="Countdown"></span>
+
+
+</template>
+
+
