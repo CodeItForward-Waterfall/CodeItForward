@@ -10,3 +10,4 @@ insecure
 iron:router
 dburles:google-maps
 remcoder:chronos
+mdg:geolocation

@@ -1,13 +1,9 @@
 <head>
-    <title>gps</title>
+    <title>map-demo</title>
 </head>
 
 <body>
-{{> map}}
+<div class="map-container">
+    {{> googleMap name="exampleMap" options=exampleMapOptions}}
+</div>
 </body>
-
-<template name="map">
-    <div class="map-container">
-        {{> googleMap name="map" options=mapOptions}}
-    </div>
-</template>
