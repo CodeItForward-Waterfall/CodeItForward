@@ -26,49 +26,73 @@
             var mapOptions = {
                 zoom: 18
             };
+
             map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
 //navigation
 
             if(navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = new google.maps.LatLng(position.coords.latitude,
-                            position.coords.longitude);
-
+                    var positron;
+                    var tempDist = google.maps.geometry.spherical.computeLength(path) / 1000;
+                    var twoDecDist = tempDist.toFixed(2);
 
                     function watchCurrentPosition() {
                         var positionTimer = navigator.geolocation.watchPosition(function(position) {
-                            setMarkerPosition(userLocation, position);
+                            setUserLocation(position);
                             map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                            // Store length of path so far in kilometers
+                            var tempDist = google.maps.geometry.spherical.computeLength(path) / 1000;
+                            var twoDecDist = tempDist.toFixed(2);
+                            // Display tag; round path length to 2 decimals
+                            totalDist = 'Distance travelled: ' +
+                                    twoDecDist + 'km';
+                            // make distance accessible by HTML
+                            document.getElementById("curDist").innerHTML=twoDecDist;
                         });
                     }
 
-                    function setMarkerPosition(marker, position) {
-                        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-                        console.log(position);
+                    function setUserLocation(pos) {
+                        // marker for userLocation
+                        userLocation = new google.maps.Marker({
+                            map : map,
+                            position : new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                            title : "You are here",
+                        });
+                        positron = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                        // Push found location to path
+                        path.push(positron);
+
+
+
+                        // scroll to userLocation
+                        map.panTo(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
                     }
 
-                    // Push found location to path
-                    path.push(pos);
+//                    // Store length of path so far in kilometers
+//                    var tempDist = google.maps.geometry.spherical.computeLength(path) * 1000;
+//                    var twoDecDist = tempDist.toFixed(2);
+//                    // Display tag; round path length to 2 decimals
+//                    totalDist = 'Distance travelled: ' +
+//                            twoDecDist + 'km';
 
-                    // Store length of path so far in kilometers
-                    var tempDist = google.maps.geometry.spherical.computeLength(path)/1000;
-                    var twoDecDist = tempDist.toFixed(2);
+                    setUserLocation(position);
+                    watchCurrentPosition();
 
-                    // Display tag; round path length to 2 decimals
-                    totalDist = 'Distance travelled: ' +
-                            twoDecDist + 'km';
 
-                    // make distance accessible by HTML
-                    document.getElementById("curDist").innerHTML=twoDecDist;
+
+
+
+
+
 
                     var infowindow = new google.maps.InfoWindow({
                         map: map,
-                        position: pos,
+                        position: positron,
                         content: totalDist.toString()
                     });
 
-                    map.setCenter(pos);
+                    map.setCenter(positron);
 
                     // Create polyline object
                     var polyline = new google.maps.Polyline({
