@@ -22,7 +22,7 @@
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
-
+//navigation
 
             if(navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -40,7 +40,7 @@
                     handleNoGeolocation(true);
                 });
             } else {
-                
+
                 handleNoGeolocation(false);
             }
         }
