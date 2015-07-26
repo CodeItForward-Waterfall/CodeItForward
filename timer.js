@@ -11,8 +11,11 @@ if (Meteor.isClient) {
     var inc = 0;
     var div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
 
+    var totalSec = 0;
+    var totalMin = totalSec/60;
+
     // Global var (from main.js)
-    
+
 
     Template.clock.helpers({
         timer: function () {
@@ -39,6 +42,7 @@ if (Meteor.isClient) {
                 hour1 += 1;
             }
             div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
+            totalSec++;
             return div;
         }
     });
