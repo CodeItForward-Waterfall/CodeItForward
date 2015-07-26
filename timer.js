@@ -11,6 +11,9 @@ if (Meteor.isClient) {
     var inc = 0;
     var div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
 
+    // Global var (from main.js)
+    
+
     Template.clock.helpers({
         timer: function () {
             Chronos.liveUpdate();
