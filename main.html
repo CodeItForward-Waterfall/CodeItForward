@@ -35,17 +35,17 @@
                     var pos = new google.maps.LatLng(position.coords.latitude,
                             position.coords.longitude);
 
-                    // Create the polyline's points (TO DELETE)
-                    for(var i = 0; i < 5; i++) {
-                        // Create a random point using the user current position and a random generated number.
-                        // The number will be once positive and once negative using based on the parity of i
-                        // and to reduce the range the number is divided by 10
-                        path.push(
-                                new google.maps.LatLng(
-                                        position.coords.latitude + (Math.random() / 10 * ((i % 2) ? 1 : -1)),
-                                        position.coords.longitude + (Math.random() / 10 * ((i % 2) ? 1 : -1))
-                                )
-                        );
+
+                    function watchCurrentPosition() {
+                        var positionTimer = navigator.geolocation.watchPosition(function(position) {
+                            setMarkerPosition(userLocation, position);
+                            map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                        });
+                    }
+
+                    function setMarkerPosition(marker, position) {
+                        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                        console.log(position);
                     }
 
                     // Push found location to path
