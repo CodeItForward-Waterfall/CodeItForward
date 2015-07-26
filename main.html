@@ -63,6 +63,14 @@
                         // Push found location to path
                         path.push(positron);
 
+                        // Create polyline object
+                        var polyline = new google.maps.Polyline({
+                            map: map,
+                            path: path,
+                            strokeColor: '#66CCFF',
+                            strokeOpacity: 0.5,
+                            strokeWeight: 5
+                        })
 
 
                         // scroll to userLocation
@@ -81,11 +89,6 @@
 
 
 
-
-
-
-
-
                     var infowindow = new google.maps.InfoWindow({
                         map: map,
                         position: positron,
@@ -94,14 +97,7 @@
 
                     map.setCenter(positron);
 
-                    // Create polyline object
-                    var polyline = new google.maps.Polyline({
-                        map: map,
-                        path: path,
-                        strokeColor: '#66CCFF',
-                        strokeOpacity: 0.5,
-                        strokeWeight: 5
-                    })
+
                 }, function() {
                     handleNoGeolocation(true);
                 });
