@@ -1,3 +1,19 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+</head>
+<body>
+{{>timer}}
+</body>
 <template name="timer">
-    <h2>Timer</h2>
+    <div>Time: <span id="time">{{{time}}}</span></div>
+    {{> foo}}
+    <input type="button" id="start" value="start" onclick="time();">
+    <input type="button" id = "stop" value="stop" onclick="stop();">
+    <input type="button" id = "reset" value="reset" onclick="reset()">
+</template>
+
+
+<template name="foo">
+    Timer: {{timer}}
 </template>
