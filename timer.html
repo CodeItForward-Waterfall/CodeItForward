@@ -5,12 +5,13 @@
 <body>
 {{>timer}}
 </body>
+
+
 <template name="timer">
-    <div>Time: <span id="time">{{{time}}}</span></div>
     {{> foo}}
-    <input type="button" id="start" value="start" onclick="time();">
-    <input type="button" id = "stop" value="stop" onclick="stop();">
-    <input type="button" id = "reset" value="reset" onclick="reset()">
+    <input type="button" id="start" value="start">
+    <input type="button" id = "stop" value="stop">
+    <input type="button" id = "reset" value="reset">
 </template>
 
 
