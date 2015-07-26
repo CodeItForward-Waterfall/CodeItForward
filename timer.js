@@ -94,7 +94,7 @@ if (Meteor.isClient) {
 
 
     var now = new Date();
-    var future = new Date("July 26, 2015, 11:00:00");
+    var future = new Date("September 20, 2015, 9:00:00");
     var remaining = future - now;
     var timer;
 
@@ -129,7 +129,7 @@ if (Meteor.isClient) {
             } if (hours < 0) {
                 hours = 23;
                 days -= 1;
-            } if (days == -1 && hours == 23 && minutes == 59 && seconds == 59){
+            } if (days < 0 && hours == 23 && minutes == 59 && seconds == 59){
                 days= 0;
                 hours = 0;
                 minutes =0;
