@@ -15,6 +15,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
+coffeescript@1.0.6
 dburles:google-maps@1.1.1
 ddp@1.1.0
 deps@1.0.7
@@ -37,6 +38,7 @@ iron:location@1.0.9
 iron:middleware-stack@1.0.9
 iron:router@1.0.9
 iron:url@1.0.9
+joshowens:shareit@0.3.1
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
@@ -69,9 +71,11 @@ session@1.1.0
 sha@1.0.3
 spacebars@1.0.6
 spacebars-compiler@1.0.6
+spiderable@1.0.7
 srp@1.0.3
 templating@1.1.1
 tracker@1.0.7
+twbs:bootstrap@3.3.5
 twitter@1.1.4
 ui@1.0.6
 underscore@1.0.3
