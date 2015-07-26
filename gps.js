@@ -15,9 +15,7 @@ if (Meteor.isClient) {
                 var latLng = Geolocation.latLng();
                 var lat = latLng.lat;
                 var lng = latLng.lng;
-                var marker = new google.maps.Marker({
-                map: map,
-                position: map.getCenter()}
+
                 //alert(latLng.latitude)
                 // Map initialization options
 
