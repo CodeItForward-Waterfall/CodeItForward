@@ -16,8 +16,7 @@ if (Meteor.isClient) {
                 var lat = latLng.lat;
                 var lng = latLng.lng;
 
-                //alert(latLng.latitude)
-                // Map initialization options
+                
 
                return {
                     center: new google.maps.LatLng(lat, lng),
