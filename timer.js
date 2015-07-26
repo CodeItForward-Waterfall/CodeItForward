@@ -2,10 +2,6 @@ Router.route('/timer');
 
 if (Meteor.isClient) {
 
-    var $time;
-    var clocktimer;
-
-
     var second2 = 0;
     var second1 = 0;
     var minute2 = 0;
@@ -15,8 +11,7 @@ if (Meteor.isClient) {
     var inc = 0;
     var div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
 
-
-    Template.foo.helpers({
+    Template.clock.helpers({
         timer: function () {
             Chronos.liveUpdate();
             second2 += inc;
@@ -47,7 +42,7 @@ if (Meteor.isClient) {
 
     Template.timer.events({
         'click #start': function () {
-            timer : {
+            {
                 inc = 1;
                 div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
                 return div;
@@ -55,7 +50,7 @@ if (Meteor.isClient) {
         },
 
         'click #stop': function () {
-            timer : {
+            {
                 inc = 0;
                 div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
                 return div;
@@ -63,7 +58,7 @@ if (Meteor.isClient) {
         },
 
         'click #reset': function () {
-            timer : {
+            {
                 second2 = 0;
                 second1 = 0;
                 div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
