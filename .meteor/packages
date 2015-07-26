@@ -11,3 +11,8 @@ iron:router
 dburles:google-maps
 remcoder:chronos
 mdg:geolocation
+accounts-ui
+accounts-password
+accounts-twitter
+accounts-facebook
+accounts-google

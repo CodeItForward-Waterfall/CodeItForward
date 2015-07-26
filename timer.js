@@ -65,6 +65,8 @@ if (Meteor.isClient) {
         'click #reset': function () {
             timer : {
                 second2 = 0;
+                second1 = 0;
+                div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
                 return div;
             }
         }
