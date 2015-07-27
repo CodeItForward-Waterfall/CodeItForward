@@ -13,8 +13,10 @@ if (Meteor.isClient) {
     var speed = 0;
     var tot = 0;
     var strSpeed = speed + "" + speed;
+    var dist = 0;
 
     var totalSec = 0;
+    var boolz = false;
     var totalMin = totalSec/60;
 
     // Global var (from main.js)
@@ -49,10 +51,17 @@ if (Meteor.isClient) {
             totalSec++;
             return div;
         },
+        distance: function () {
+            Chronos.liveUpdate();
+            if(boolz){
+                totalDist = 0;
+                boolz = false;
+            }
+          return totalDist;
+        },
         speed: function () {
             Chronos.liveUpdate();
-            var dis = document.getElementById("curDist").innerHTML;
-            speed = ((dis * 3600) / tot).toFixed(2);
+            speed = ((totalDist * 3600) / tot).toFixed(2);
             strSpeed = speed + "" ;
             return strSpeed;
         }
@@ -79,7 +88,23 @@ if (Meteor.isClient) {
             {
                 second2 = 0;
                 second1 = 0;
+                minute2 = 0;
+                minute1 = 0;
+                hour2 = 0;
+                hour1 = 0;
+                inc = 0;
+                div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
+                speed = 0;
                 tot = 0;
+                strSpeed = speed + "";
+                dist = 0;
+
+                totalSec = 0;
+                boolz = true;
+
+
+                emptyPath();
+
                 div = hour1 + "" + hour2 + ":" + minute1 + minute2 + ":" + second1 + second2;
                 return div;
             }
@@ -107,7 +132,7 @@ if (Meteor.isClient) {
     var hours = Math.floor((remaining % _day) / _hour);
     var minutes = Math.floor((remaining % _hour) / _minute);
     var seconds = Math.floor((remaining % _minute) / _second);
-    var inc = 0
+    var incr = 0
 
     Template.countDown.helpers({
         countdown: function () {
@@ -118,7 +143,7 @@ if (Meteor.isClient) {
             document.getElementById('Countdown').innerHTML += minutes + 'mins ';
             document.getElementById('Countdown').innerHTML += seconds + 'secs';
 
-            seconds -= inc;
+            seconds -= incr;
 
             if (seconds < 0) {
                 seconds = 59;
@@ -142,7 +167,7 @@ if (Meteor.isClient) {
 
     Template.countDown.events({
         countdown : onload = function() {
-            inc = 1;
+            incr = 1;
             return days + ' days '+ hours + ' hrs '+ minutes + ' mins ' +seconds + ' secs';
         }
     })

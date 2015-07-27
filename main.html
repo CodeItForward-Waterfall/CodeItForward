@@ -17,6 +17,7 @@
 
         var map;
 
+        var boll = false;
         var totalDist = 0;
 
         // Save positions' history
@@ -45,8 +46,7 @@
                             var tempDist = google.maps.geometry.spherical.computeLength(path) / 1000;
                             var twoDecDist = tempDist.toFixed(2);
                             // Display tag; round path length to 2 decimals
-                            totalDist = 'Distance travelled: ' +
-                                    twoDecDist + 'km';
+                            totalDist = twoDecDist;
                             // make distance accessible by HTML
                             document.getElementById("curDist").innerHTML=twoDecDist;
                         });
@@ -54,11 +54,7 @@
 
                     function setUserLocation(pos) {
                         // marker for userLocation
-                        userLocation = new google.maps.Marker({
-                            map : map,
-                            position : new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                            title : "You are here",
-                        });
+
                         positron = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                         // Push found location to path
                         path.push(positron);
@@ -71,6 +67,12 @@
                             strokeOpacity: 0.5,
                             strokeWeight: 5
                         })
+
+                        if (boll) {
+                            map.clear();
+                            polyline.setMap(map);
+                            boll = false;
+                        }
 
 
                         // scroll to userLocation
@@ -87,13 +89,6 @@
                     setUserLocation(position);
                     watchCurrentPosition();
 
-
-
-                    var infowindow = new google.maps.InfoWindow({
-                        map: map,
-                        position: positron,
-                        content: totalDist.toString()
-                    });
 
                     map.setCenter(positron);
 
@@ -122,6 +117,12 @@
 
             var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
+        }
+
+        function emptyPath() {
+            path = new [];
+            boll = true;
+
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
