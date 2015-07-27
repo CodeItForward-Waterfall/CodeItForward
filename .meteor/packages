@@ -13,7 +13,6 @@ remcoder:chronos
 mdg:geolocation
 accounts-ui
 accounts-password
-accounts-twitter
 accounts-facebook
 accounts-google
 twbs:bootstrap
