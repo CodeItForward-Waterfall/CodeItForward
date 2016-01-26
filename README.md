@@ -4,4 +4,4 @@ An app for the Bicycle Trek to help participants train. The app maps the user's 
 
 Mockups are made for what we hope to be the final finished product. 
 
-A prototype with invision was also made as well.
+InVision prototype: https://invis.io/4D3OEPFRF
